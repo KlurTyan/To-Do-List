@@ -1,0 +1,45 @@
+body{
+    background-color: #38404B;
+}
+
+.form-control{
+    width: 800px;
+    height: 60px;
+    margin: 100px 0px 100px 590px;
+    box-shadow: 
+    1px 1px 2px #424B58,
+    -1px -1px 2px #2E353E,
+    inset -3px 3px 6px #2E353E,
+    inset 3px -3px 6px #2E353E,
+    inset -3px -3px 6px #424B58,
+    inset 3px 3px 8px #2E353E;
+    background-color: #38404B;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    background: url('../images/arrow.png') no-repeat;
+    background-position: bottom 16px right 20px;
+    background-size: 18px;
+    outline: none;
+    padding-left: 20px;
+    padding-right: 48px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.form-control::placeholder{
+    color: #94ADCF;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.form-control:focus{
+    background-color: #38404B;
+    border: none;
+    box-shadow: 
+    1px 1px 2px #424B58,
+    -1px -1px 2px #2E353E,
+    inset -3px 3px 6px #2E353E,
+    inset 3px -3px 6px #2E353E,
+    inset -3px -3px 6px #424B58,
+    inset 3px 3px 8px #2E353E;
+    color: white;
+}
