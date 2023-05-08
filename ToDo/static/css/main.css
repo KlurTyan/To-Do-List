@@ -1,11 +1,12 @@
 body{
     background-color: #38404B;
+    user-select: none;
 }
 
-.form-control{
+.input-group .form-control{
     width: 800px;
     height: 60px;
-    margin: 100px 0px 100px 590px;
+    margin: 100px 0px 100px 525px;
     box-shadow: 
     1px 1px 2px #424B58,
     -1px -1px 2px #2E353E,
@@ -26,12 +27,12 @@ body{
     font-family: 'Ubuntu', sans-serif;
 }
 
-.form-control::placeholder{
+.input-group .form-control::placeholder{
     color: #94ADCF;
     font-family: 'Ubuntu', sans-serif;
 }
 
-.form-control:focus{
+.input-group .form-control:focus{
     background-color: #38404B;
     border: none;
     box-shadow: 
@@ -42,4 +43,69 @@ body{
     inset -3px -3px 6px #424B58,
     inset 3px 3px 8px #2E353E;
     color: white;
+}
+
+.input-group-text{
+    width: 380px;
+    height: 100px;
+    background-color: #38404B;
+    border: none;
+    box-shadow: 
+    inset 1px 1px 2px #404A56,
+    inset -1px -1px 2px #303640,
+    -5px 5px 10px #303640,
+    5px -5px 10px #303640,
+    -5px -5px 10px #404A56,
+    5px 5px 13px #303640;
+    padding-bottom: 20px;
+}
+
+.input-group-text input{
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.input-group-text input::before{
+    content: '';
+    position: absolute;
+    width: 23px;
+    height: 23px;
+    background: url('../images/eclpese-off.png') no-repeat;
+    background-size: 20px;
+}
+
+.input-group-text input:checked:before{
+    content: '';
+    position: absolute;
+    width: 23px;
+    height: 23px;
+    background-image: url('../images/eclipse-on.png');
+    background-size: 20px;
+}
+
+#card-container{
+    padding-left: 250px;
+    display: grid;
+    grid-template-columns: repeat(3, 330px);
+    gap: 80px;
+}
+
+.text{
+    padding-left: 30px;
+    margin-bottom: -22px;
+    color: #94ADCF;
+    user-select: none;
+    cursor: pointer;
+    font-size: 19px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.completed{
+    display: block;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 32px;
+    color: #94ADCF;
+    margin-left: 250px;
+    margin-top: 40px;
 }

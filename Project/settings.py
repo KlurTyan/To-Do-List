@@ -41,6 +41,18 @@ INSTALLED_APPS = [
     'ToDo'
 ]
 
+JAZZMIN_SETTINGS = {
+    'site_title' : 'ToDo Admin',
+    'site_header' : 'ToDo List',
+    'welcome_sign' : 'ToDo List',
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        'ToDo.Affairs' : "fa fa-list"
+    }
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
