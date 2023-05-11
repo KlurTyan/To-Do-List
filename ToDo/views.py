@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from .models import Affairs
 
-from rest_framework.viewsets import ModelViewSet, GenericViewSet
+from rest_framework.viewsets import GenericViewSet
 from .serializers import AffairsSerializer
 from rest_framework import mixins
 
 from datetime import datetime
 
-class AffairViewSet(GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin ,mixins.UpdateModelMixin):
+class AffairViewSet(GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin):
     serializer_class = AffairsSerializer
     queryset = Affairs.objects.all()
 
