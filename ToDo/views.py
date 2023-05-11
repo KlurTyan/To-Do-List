@@ -1,8 +1,15 @@
 from django.shortcuts import render, redirect
 from .models import Affairs
-from .forms import AffairsForm
+
+from rest_framework.viewsets import ModelViewSet, GenericViewSet
+from .serializers import AffairsSerializer
+from rest_framework import mixins
 
 from datetime import datetime
+
+class AffairViewSet(GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin ,mixins.UpdateModelMixin):
+    serializer_class = AffairsSerializer
+    queryset = Affairs.objects.all()
 
 def index(request):
     time = str(datetime.now().date())
@@ -18,6 +25,5 @@ def index(request):
         objects = Affairs.objects.all()
         data = {
             'affair' : objects,
-            'form' : AffairsForm
         }
         return render(request, 'index.html', data)

@@ -91,6 +91,13 @@ body{
     gap: 80px;
 }
 
+#card-container-completed{
+    padding-left: 250px;
+    display: grid;
+    grid-template-columns: repeat(3, 330px);
+    gap: 80px;
+}
+
 .text{
     padding-left: 30px;
     margin-bottom: -22px;
