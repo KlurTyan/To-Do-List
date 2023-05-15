@@ -1,6 +1,4 @@
-$(document).ready(function(){ 
-  $('#completed').hide()
-
+$(document).ready(function(){
   $.get('http://127.0.0.1:8000/api/post/', async function(data){
     len = data['results'].length
     for (let i = 0; i<len; i++){
