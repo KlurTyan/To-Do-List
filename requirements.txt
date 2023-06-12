@@ -11,3 +11,4 @@ django-jazzmin
 django-environ
 environ
 psycopg2-binary
+psycopg2

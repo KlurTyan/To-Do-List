@@ -101,7 +101,7 @@ body{
 .text{
     padding-left: 30px;
     margin-bottom: -22px;
-    color: #94ADCF;
+    color: rgb(148, 173, 207);
     user-select: none;
     cursor: pointer;
     font-size: 19px;
@@ -115,4 +115,22 @@ body{
     color: #94ADCF;
     margin-left: 250px;
     margin-top: 40px;
+}
+
+.input-group-text a{
+    width: 25px;
+    height: 25px;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+    background: url('../images/trash.png') no-repeat;
+    border: none;
+    margin-top: 20px;
+    margin-left: 230px;
+
+}
+
+
+.input-group-text a:hover{
+    background: url('../images/trash-hover.png') no-repeat;
 }

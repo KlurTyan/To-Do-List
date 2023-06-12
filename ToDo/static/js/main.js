@@ -16,8 +16,13 @@ $(document).ready(function(){
       text_label.id = 'c' + data['results'][i].id
       text_label.innerText = data['results'][i].text
 
+      const del = document.createElement('a')
+      del.id = 'del' + data['results'][i].id
+      // del.href = `http://localhost:8000/api/post-delete/${}/`
+
       card.appendChild(cb)
       card.appendChild(text_label)
+      card.appendChild(del)
       
       if (data['results'][i].done == true){
         document.getElementById('card-container-completed').appendChild(card);
@@ -29,8 +34,21 @@ $(document).ready(function(){
         $(String('#c' + data['results'][i].id)).css('text-decoration', 'none');
       }
 
+      $('#del' + data['results'][i].id).click(function(){
+        $.ajax({
+          url : `http://localhost:8000/api/post-delete/${data['results'][i].id}/`,
+          method: 'DELETE',
+          headers: {'Authorization' : `Bearer ${localStorage.getItem('access_token')}`}
+          }).done(function(){
+            card.style = 'display: none'
+          }).fail(function(msg){
+            console.log(msg['responseJSON']['detail'])
+          })
+        })
+
       $(String('#checkbox' + data['results'][i].id)).click(function(){
         $.get(`http://localhost:8000/api/post/${data['results'][i].id}/`, async function(data){
+          console.log(data)
           if (data.done == false){
             $.ajax({
             url : `http://localhost:8000/api/post/${data.id}/`,
