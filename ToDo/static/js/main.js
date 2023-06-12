@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $.get('http://127.0.0.1:8000/api/post/', async function(data){
+  $.get('http://localhost:8000/api/post/', async function(data){
     len = data['results'].length
     for (let i = 0; i<len; i++){
       const card = document.createElement('div')
@@ -30,10 +30,10 @@ $(document).ready(function(){
       }
 
       $(String('#checkbox' + data['results'][i].id)).click(function(){
-        $.get(`http://127.0.0.1:8000/api/post/${data['results'][i].id}/`, async function(data){
+        $.get(`http://localhost:8000/api/post/${data['results'][i].id}/`, async function(data){
           if (data.done == false){
             $.ajax({
-            url : `http://127.0.0.1:8000/api/post/${data.id}/`,
+            url : `http://localhost:8000/api/post/${data.id}/`,
             method: 'PATCH',
             data : {text : data.text, date : data.date, done : true},
             })
@@ -43,7 +43,7 @@ $(document).ready(function(){
 
           else {
             $.ajax({
-              url : `http://127.0.0.1:8000/api/post/${data.id}/`,
+              url : `http://localhost:8000/api/post/${data.id}/`,
               method: 'PATCH',
               data : {text : data.text, date : data.date, done : false},
             })
