@@ -49,7 +49,7 @@ class UserView(ModelViewSet):
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
 #AFFAIRS
-class AffairViewSet(GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin):
+class AffairViewSet(GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.CreateModelMixin):
     serializer_class = AffairsSerializer
     queryset = Affairs.objects.all()
 
@@ -61,19 +61,22 @@ class AffairViewDelete(GenericViewSet, mixins.DestroyModelMixin):
 
     permission_classes = [IsAuthenticated, IsClientorSAdmin]
 
+# def index(request):
+#     time = str(timezone.now().date())
+#     # processing a POST request
+#     if request.method == 'POST':
+#         add_task = request.POST.get('affair') # getting data from a POST request
+#         Affairs.objects.create(text = add_task,
+#                                date = time,
+#                                done = False) # saving data in the model
+#         return redirect('main')
+#     else:
+#         # processing a GET request
+#         objects = Affairs.objects.all()
+#         data = {
+#             'affair' : objects,
+#         }
+#         return render(request, 'index.html', data)
+
 def index(request):
-    time = str(timezone.now().date())
-    # processing a POST request
-    if request.method == 'POST':
-        add_task = request.POST.get('affair') # getting data from a POST request
-        Affairs.objects.create(text = add_task,
-                               date = time,
-                               done = False) # saving data in the model
-        return redirect('main')
-    else:
-        # processing a GET request
-        objects = Affairs.objects.all()
-        data = {
-            'affair' : objects,
-        }
-        return render(request, 'index.html', data)
+    return render(request, 'index.html')

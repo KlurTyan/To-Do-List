@@ -18,7 +18,6 @@ $(document).ready(function(){
 
       const del = document.createElement('a')
       del.id = 'del' + data['results'][i].id
-      // del.href = `http://localhost:8000/api/post-delete/${}/`
 
       card.appendChild(cb)
       card.appendChild(text_label)
@@ -42,7 +41,7 @@ $(document).ready(function(){
           }).done(function(){
             card.style = 'display: none'
           }).fail(function(msg){
-            console.log(msg['responseJSON']['detail'])
+            console.log(msg['responseJSON']['detail'], '')
           })
         })
 
