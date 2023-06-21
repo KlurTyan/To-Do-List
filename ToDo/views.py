@@ -9,7 +9,7 @@ from rest_framework.generics import ListAPIView
 from django.utils import timezone
 from rest_framework.response import Response
 
-from .serializers import AffairsSerializer, TokenObtainPairSerializer, TokenRefreshSerializer, GetUserSerializer, AffairDeleteSerializer
+from .serializers import AffairsSerializer, TokenObtainPairSerializer, TokenRefreshSerializer, GetUserSerializer, RegisterUserSerializer
 from .permisssions import IsClientorSAdmin
 from .models import Affairs, User
 
@@ -48,35 +48,33 @@ class UserView(ModelViewSet):
         serializer = self.get_serializer(request.user)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
-#AFFAIRS
-class AffairViewSet(GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.CreateModelMixin):
-    serializer_class = AffairsSerializer
-    queryset = Affairs.objects.all()
 
+class UserRegisterView(GenericViewSet, mixins.CreateModelMixin):
     permission_classes = [AllowAny]
+    serializer_class = RegisterUserSerializer
+    queryset = User.objects.all()
 
-class AffairViewDelete(GenericViewSet, mixins.DestroyModelMixin):
-    serializer_class = AffairDeleteSerializer
+#AFFAIRS
+class AffairViewSet(GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, mixins.CreateModelMixin):
+    serializer_class = AffairsSerializer
     queryset = Affairs.objects.all()
 
     permission_classes = [IsAuthenticated, IsClientorSAdmin]
 
-# def index(request):
-#     time = str(timezone.now().date())
-#     # processing a POST request
-#     if request.method == 'POST':
-#         add_task = request.POST.get('affair') # getting data from a POST request
-#         Affairs.objects.create(text = add_task,
-#                                date = time,
-#                                done = False) # saving data in the model
-#         return redirect('main')
-#     else:
-#         # processing a GET request
-#         objects = Affairs.objects.all()
-#         data = {
-#             'affair' : objects,
-#         }
-#         return render(request, 'index.html', data)
+# class AffairViewGet(ModelViewSet):
+#     serializer_class = AffairsSerializer
+#     queryset = Affairs.objects.all()
+
+#     permission_classes = [IsAuthenticated, IsClientorSAdmin]
+
+#     def get_user_records(self, request, *args, **kwargs):
+#         serializer = self.get_serializer(request.)
+#         return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+
 
 def index(request):
     return render(request, 'index.html')
+
+def login_form(request):
+    return render(request, 'login.html')

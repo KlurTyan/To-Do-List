@@ -21,7 +21,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     id = models.AutoField(primary_key=True)
-    username = models.CharField('Логин', max_length=50, default='', unique=True)
+    login = models.CharField('Логин', max_length=50, default='', unique=True)
     first_name = models.CharField("ФИО",max_length=100, default='', blank=True,null=True)
     email=models.EmailField("Почта",default="email@mail.com",blank=True,null=True)
     role=models.IntegerField(verbose_name='Роль',default=CLIENT,choices=ROLE_TYPES)
@@ -32,7 +32,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name='Статус доступа',
     )
 
-    USERNAME_FIELD = 'username'
+    USERNAME_FIELD = 'login'
     REQUIRED_FIELDS = []
 
     def save(self, *args, **kwargs):
@@ -44,8 +44,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Affairs(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=("Пользователь создавший пост"), on_delete=models.CASCADE,null=True,blank=True, related_name='affair')
     text = models.TextField('Дело', max_length=30)
-    date = models.DateField('Дата')
+    date = models.DateField('Дата', auto_now=True)
     done = models.BooleanField('Выполнено')
+
+    REQUIRED_FIELDS = '__all__'
 
     def __str__(self) -> str:
         return self.text

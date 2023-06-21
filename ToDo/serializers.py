@@ -16,11 +16,11 @@ class TokenObtainPairSerializer(TokenObtainPairSerializer):
 
         if not self.user.is_active:
             raise AuthenticationFailed({
-                'detail': f"Пользователь {self.user.username} был деактивирован!"
+                'detail': f"Пользователь {self.user.login} был деактивирован!"
             }, code='user_deleted')
 
         data['id'] = self.user.id
-        data['username'] = self.user.username
+        data['login'] = self.user.login
 
         return data
 
@@ -41,26 +41,27 @@ class TokenRefreshSerializer(TokenRefreshSerializer):
 
         if user.blocked:
             raise AuthenticationFailed({
-                'detail': f"Пользователь {user.username} был заблокирован!"
+                'detail': f"Пользователь {user.login} был заблокирован!"
             }, code='user_deleted')
 
         data['id'] = user.id
-        data['username'] = user.username
+        data['login'] = user.login
 
         return data
+
 
 class GetUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
 
+class RegisterUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['login', 'password', 'email']
+
 # Affair
 class AffairsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Affairs
-        fields = '__all__'
-
-class AffairDeleteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Affairs
         fields = '__all__'
