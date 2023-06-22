@@ -149,13 +149,14 @@ body{
 
 .dropbtn {
     background-color: #38404B;
-    color: white;
-    padding: 16px;
+    padding: 7px;
+    padding-top: 16px;
     font-size: 18px;
     border: none;
     color: #b7d0f3;
     font-family: 'Ubuntu', sans-serif;
   }
+
   
   /* Контейнер <div> - необходим для размещения выпадающего содержимого */
   .dropdown {
@@ -183,10 +184,36 @@ body{
     text-decoration: none;
     display: block;
   }
+
   
   /* Изменение цвета выпадающих ссылок при наведении курсора */
+  .dropdown-content a:hover {
+    background-color: #738499;
+    border-radius: 8px;
+}
+
+.dropdown-content a:active {
+    background-color: #7fa0c9;
+    border-radius: 8px;
+}
   
   /* Показать выпадающее меню при наведении курсора */
   .dropdown:hover .dropdown-content {display: block;}
   
   /* Изменение цвета фона кнопки раскрывающегося списка при отображении содержимого раскрывающегося списка */
+
+.date-block{
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 50px;
+}
+#date-label{
+    color: #94ADCF;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 25px;
+}
+
+#date-label:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}

@@ -15,15 +15,15 @@
     <title>To-Do-List</title>
 </head>
 <body>
-    <!-- Form for adding cases -->
-
     <div class="dropdown">
         <button class="dropbtn"></button>
         <div class="dropdown-content">
+          <a href="{% url 'profile' %}" id="Profile">Profile</a>
           <a href="" id="log-out">Log out</a>
         </div>
-      </div>
+    </div>
 
+    <!-- Form for adding cases -->
     <div class="input-group">
         <form action="" method="" class="form">
             {% csrf_token %}

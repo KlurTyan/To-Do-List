@@ -5,9 +5,10 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework import mixins, status
 from rest_framework_simplejwt.views import TokenObtainSlidingView, TokenRefreshSlidingView
 from rest_framework.generics import ListAPIView
+from rest_framework.response import Response
 
 from django.utils import timezone
-from rest_framework.response import Response
+from django_filters.rest_framework import DjangoFilterBackend
 
 from .serializers import AffairsSerializer, TokenObtainPairSerializer, TokenRefreshSerializer, GetUserSerializer, RegisterUserSerializer
 from .permisssions import IsClientorSAdmin
@@ -55,26 +56,28 @@ class UserRegisterView(GenericViewSet, mixins.CreateModelMixin):
     queryset = User.objects.all()
 
 #AFFAIRS
-class AffairViewSet(GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, mixins.CreateModelMixin):
+class AffairViewSet(GenericViewSet, mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, mixins.CreateModelMixin):
     serializer_class = AffairsSerializer
     queryset = Affairs.objects.all()
 
     permission_classes = [IsAuthenticated, IsClientorSAdmin]
 
-# class AffairViewGet(ModelViewSet):
-#     serializer_class = AffairsSerializer
-#     queryset = Affairs.objects.all()
 
-#     permission_classes = [IsAuthenticated, IsClientorSAdmin]
+class AffairViewGet(ModelViewSet):
+    serializer_class = AffairsSerializer
 
-#     def get_user_records(self, request, *args, **kwargs):
-#         serializer = self.get_serializer(request.)
-#         return Response(data=serializer.data, status=status.HTTP_200_OK)
+    permission_classes = [IsAuthenticated, IsClientorSAdmin]
 
-
+    def list(self, request):
+        ls = Affairs.objects.filter(user = request.user)
+        serializer = AffairsSerializer(ls, many=True)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
 
 def index(request):
     return render(request, 'index.html')
 
 def login_form(request):
     return render(request, 'login.html')
+
+def profile(request):
+    return render(request, 'profile.html')
